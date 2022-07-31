@@ -5,13 +5,11 @@
     height: 100%;
     width: 180px;
     position: fixed;
-    z-index: 1;
     top: 0;
     left: 0;
     background-color: #111;
     overflow-x: hidden;
     padding-top: 20px;
-    z-index: 2;
 }
 
 .menu-link {
@@ -39,6 +37,7 @@ a:link {
 
 .logout {
     padding: 0;
+    cursor: pointer;
 }
 
 .sidebar-item {
@@ -59,9 +58,9 @@ a:link {
         width: 100%;
         padding: 1.5rem;
         text-align: left;
-        height: 80px;
+        height: 60px;
         position: relative;
-        z-index: 1;
+        z-index: 0;
         overflow-x: hidden;
         padding-top: 20px;
     }

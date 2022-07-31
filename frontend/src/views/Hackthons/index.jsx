@@ -1,18 +1,21 @@
+import "./style.css"
 import { useState } from 'react';
 import { useEffect } from 'react';
-import AuthUser from '../../components/AuthUser';
 import Pagination from "react-js-pagination";
+import AuthUser from '../../components/AuthUser';
 import { useToasts } from 'react-toast-notifications';
-import "./style.css"
+import LoadingModal from '../../components/LoadingModal';
+import DevelopmentsModal from '../../components/DevelopmentsModal';
 
 const Hackthons = () => {
     const { http, logout } = AuthUser();
     const [hackathons, setHackathons] = useState();
     const [response, setResponse] = useState();
+    const [loading, setLoading] = useState(false);
     const { addToast } = useToasts();
 
     const getHackatons = (pageNumber = 1) => {
-
+        setLoading(true);
         http.get(
             '/get_hackatons?page=' + pageNumber
         ).then((res) => {
@@ -36,6 +39,14 @@ const Hackthons = () => {
             }
             setHackathons(res.data.hackathons.data)
             setResponse(res.data.hackathons)
+            setLoading(false);
+        }).catch(error => {
+            setLoading(false);
+            addToast(error.message, {
+                autoDismiss: true,
+                autoDismissTimeout: 5000,
+                appearance: 'warning'
+            });
         })
     }
 
@@ -62,11 +73,13 @@ const Hackthons = () => {
                                     <td>{hack?.name}</td>
                                     <td>{hack?.place}</td>
                                     <td>{hack?.date}</td>
-                                    <td><button className='btn btn-secondary'>view</button></td>
+                                    <td>
+                                        <DevelopmentsModal hackathonId={hack?.id} />
+                                    </td>
                                 </tr>
                             )
                         })
-                        : <tr className='loader-label'><p>Loading...</p></tr>}
+                        : null}
                 </tbody>
             </table>
             <div className="pagination">
@@ -84,6 +97,10 @@ const Hackthons = () => {
                     lastPageText="Last"
                 />
             </div>
+            {loading ?
+                <LoadingModal></LoadingModal>
+                : null
+            }
         </div>
 
     );

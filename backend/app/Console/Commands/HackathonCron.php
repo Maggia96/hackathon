@@ -48,8 +48,7 @@ class HackathonCron extends Command
             $hackathon = $hackathonModel->createHackathonCron($this->getUsersFromAPI());
 
             for ($i = 0; $i < 10; $i++) {
-
-                $development = $developmentModel->createDevelopmentCron($i, $hackathon->id);
+                $development = $developmentModel->createDevelopmentCron($hackathon->id);
                 $user = $userModel->createUserCron($this->getUsersFromAPI());
                 $developer = $developerModel->createDeveloperCron(
                     $this->getUsersFromAPI(),
@@ -57,8 +56,8 @@ class HackathonCron extends Command
                     $user->id,
                     $development->id
                 );
-                if ($i > 0 && $i < 4) {
-                    $winnerModel->createWinnerCron($i, $developer->id);
+                if ($i < 3) {
+                    $winnerModel->createWinnerCron($i + 1, $developer->id);
                 }
             }
             DB::commit();

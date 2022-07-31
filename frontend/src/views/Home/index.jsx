@@ -1,5 +1,5 @@
-import { HaskathonBG , HackLogo } from '../../assets/img/index';
 import './style.css';
+import { HaskathonBG } from '../../assets/img/index';
 const Home = () => {
 
     return (

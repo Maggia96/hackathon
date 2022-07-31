@@ -1,0 +1,15 @@
+img {
+    -webkit-user-drag: none;
+    -khtml-user-drag: none;
+    -moz-user-drag: none;
+    -o-user-drag: none;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-drag: none;
+    -webkit-user-select: none;
+}
+
+.ReactModal__Content.ReactModal__Content--after-open {
+    max-width: -webkit-fill-available;
+    max-height: -webkit-fill-available;
+}

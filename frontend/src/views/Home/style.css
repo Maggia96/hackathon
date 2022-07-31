@@ -1,3 +1,14 @@
-.home-bg{
-    width: 75%;
+.home-bg {
+    width: 55%;
+    padding-top: 8%;
+}
+
+@media (max-width: 768px) {
+    .home-container {
+        padding-top: 50%;
+    }
+
+    .home-bg {
+        width: 90%;
+    }
 }

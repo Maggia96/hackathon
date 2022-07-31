@@ -1,0 +1,15 @@
+.developer-container {
+    width: 500px;
+    padding: 3rem;
+    text-align: center;
+    border: 1px solid gray;
+}
+
+.profile {
+    width: 10rem;
+    border-radius: 20rem;
+}
+
+.border-off {
+    border: none;
+}

@@ -1,0 +1,51 @@
+.active-profile {
+    background-color: lightblue;
+}
+
+.select-tr {
+    cursor: pointer;
+}
+
+a.page-link.undefined {
+    z-index: 0;
+}
+
+.close-container {
+    width: 100%;
+    text-align: end;
+    cursor: pointer;
+}
+
+.close-small {
+    background: transparent;
+    border: none;
+    font-size: 2rem;
+}
+
+.modal-loader{
+    padding: 0;
+}
+
+@media (max-width: 768px) {
+    .developments-table {
+        margin: 0 5rem;
+    }
+
+    .modal-container {
+        overflow: scroll;
+        max-height: 700px;
+    }
+
+    .close-small {
+        position: absolute;
+        top: 0%;
+        right: 18%;
+        background: transparent;
+        border: none;
+        font-size: 2rem;
+    }
+
+    .modal-title{
+        margin-left: 2rem;
+    }
+}

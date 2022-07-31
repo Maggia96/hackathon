@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 const TECHNOLOGIES = ['Java', 'PHP', 'C#', 'C++', 'Python', 'JavaScript', 'C', 'GO', 'HTML', 'CSS'];
-const DEVELOPMENTS = ['mobile App', 'ecommerce', 'landing', 'Pc Game', 'mobile Game', 'robotic', 'algorithms', '3D view', 'artificial intelligence', 'others'];
+const DEVELOPMENTS = ['App', 'Ecommerce', 'Landing Page', 'Pc Game', 'Mobile Game', 'Robotic', 'Algorithms', '3D View', 'Artificial Intelligence'];
 
 class Development extends Model
 {
@@ -25,14 +25,14 @@ class Development extends Model
 
     public function developer()
     {
-        return $this->belongsTo(Developer::class);
+        return $this->hasOne(Developer::class);
     }
 
-    public function createDevelopmentCron($index, $hackathonId)
+    public function createDevelopmentCron($hackathonId)
     {
         return Development::create([
-            'name' => DEVELOPMENTS[$index],
-            'technology' => TECHNOLOGIES[$index],
+            'name' => DEVELOPMENTS[rand(0, 8)],
+            'technology' => TECHNOLOGIES[rand(0, 9)],
             'hackathon_id' => $hackathonId
         ]);
     }

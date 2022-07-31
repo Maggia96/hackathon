@@ -1,11 +1,9 @@
+import './style.css'
+import Home from '../Home';
 import { useState } from 'react';
 import AuthUser from '../../components/AuthUser';
-import Home from '../Home';
-import { HaskathonBG } from '../../assets/img/index';
+import { HaskathonBG, HackLogo } from '../../assets/img/index';
 import { useToasts } from 'react-toast-notifications';
-
-import './style.css'
-
 
 const Login = () => {
     const { http, setToken, getToken } = AuthUser();
@@ -15,17 +13,19 @@ const Login = () => {
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [loading, setLoading] = useState(false);
 
     const validateForm = () => {
         return email === '' || password === '';
     }
     const submitForm = () => {
-        if (validateForm()) 
+        if (validateForm())
             return addToast('You must complete the user and password fields.', {
                 autoDismiss: true,
                 autoDismissTimeout: 5000,
                 appearance: 'warning'
             });
+        setLoading(true);
         http.post(
             '/login',
             {
@@ -33,6 +33,7 @@ const Login = () => {
                 password: password
             }
         ).then((res) => {
+            setLoading(false);
             addToast(`Welcome ${res.data.user.name}`, {
                 autoDismiss: true,
                 autoDismissTimeout: 3000,
@@ -45,47 +46,58 @@ const Login = () => {
                 autoDismissTimeout: 5000,
                 appearance: 'error'
             });
+            setLoading(false);
         }))
     }
-
+    const handleKeyPress = (event) => {
+        if (event.key === 'Enter') {
+            submitForm();
+        }
+    }
     return (
-        <div className='container-fluid login_container'>
-            <form className="form-horizontal form-control" role="form">
-                <h3 className='login-label'>Log In</h3>
-                <img className='login-logo' src={HaskathonBG} alt="" />
-
-                <div className="form-group px-lg-5">
-                    <div className="">
-                        <input
-                            type="email"
-                            className="form-control"
-                            name="email"
-                            placeholder='Email...'
-                            onChange={e => setEmail(e.target.value)}
-                        />
+        <div className="main-login-container">
+            <div className='container-fluid login_container'>
+                <form className="form-horizontal form-control" role="form">
+                    <h3 className='login-label'>Log In</h3>
+                    <img className='login-logo' src={HackLogo} alt="" />
+                    <div className="form-group px-lg-5">
+                        <div className="">
+                            <input
+                                type="email"
+                                className="form-control login-inputs"
+                                name="email"
+                                placeholder='Email...'
+                                onChange={e => setEmail(e.target.value)}
+                                onKeyPress={handleKeyPress}
+                            />
+                        </div>
                     </div>
-                </div>
-
-                <div className="form-group px-lg-5">
-                    <div className="">
-                        <input
-                            placeholder='Password...'
-                            type="password"
-                            className="form-control"
-                            name="password"
-                            onChange={e => setPassword(e.target.value)}
-                        />
+                    <div className="form-group px-lg-5">
+                        <div className="">
+                            <input
+                                placeholder='Password...'
+                                type="password"
+                                className="form-control login-inputs"
+                                name="password"
+                                onChange={e => setPassword(e.target.value)}
+                                onKeyPress={handleKeyPress}
+                            />
+                        </div>
                     </div>
-                </div>
-
-                <div className="form-group submit">
-                    <button
-                        type="button"
-                        className="btn btn-primary"
-                        onClick={submitForm}
-                    >Log in</button>
-                </div>
-            </form>
+                    <div className="form-group submit">
+                        <button
+                            type="button"
+                            className="btn btn-primary"
+                            onClick={submitForm}
+                        >
+                          { loading ?
+                             <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                             : 'log in'
+                          }
+                        </button>
+                    </div>
+                </form>
+            </div>
         </div>
     );
 };

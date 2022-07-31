@@ -1,0 +1,13 @@
+.close-user-modal{
+    float: right;
+    cursor: pointer;
+}
+
+@media (max-width: 768px) {
+    .close-user-modal{
+        cursor: pointer;
+        position: absolute;
+        right: 20%;
+        top: 10%;
+    }
+}

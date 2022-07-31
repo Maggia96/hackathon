@@ -1,22 +1,25 @@
 import { useState } from 'react';
 import { useEffect } from 'react';
-import AuthUser from '../../components/AuthUser';
 import Pagination from "react-js-pagination";
+import AuthUser from '../../components/AuthUser';
+import UserModal from '../../components/UserModal';
 import { useToasts } from 'react-toast-notifications';
+import LoadingModal from '../../components/LoadingModal';
 
 const Developers = () => {
     const { http } = AuthUser();
     const [developers, setDevelopers] = useState();
     const [response, setResponse] = useState();
+    const [loading, setLoading] = useState(false);
     const { addToast } = useToasts();
 
     const getDevelopers = (pageNumber = 1) => {
-
+        setLoading(true);
         http.get(
             '/get_top_developers?page=' + pageNumber
         ).then((res) => {
             if (res.data.status === "Token is Expired") {
-                addToast('Your session has expired.',{
+                addToast('Your session has expired.', {
                     autoDismiss: true,
                     autoDismissTimeout: 5000,
                     appearance: 'warning'
@@ -35,6 +38,14 @@ const Developers = () => {
             }
             setDevelopers(res.data.developers.data)
             setResponse(res.data.developers)
+            setLoading(false);
+        }).catch(error => {
+            setLoading(false);
+            addToast(error.message, {
+                autoDismiss: true,
+                autoDismissTimeout: 5000,
+                appearance: 'warning'
+            });
         })
     }
 
@@ -65,11 +76,11 @@ const Developers = () => {
                                     <td>{hack?.developer.hackathon.name}</td>
                                     <td className='mobile-hide'>{`°${hack?.ranking}`}</td>
                                     <td className='mobile-hide'>{hack?.developer.phone}</td>
-                                    <td><button className='btn btn-secondary'>view</button></td>
+                                    <td><UserModal developer={hack?.developer} ranking={hack?.ranking} /></td>
                                 </tr>
                             )
                         })
-                        : <tr className='loader-label'><p>Loading...</p></tr>}
+                        : null}
                 </tbody>
             </table>
             <div className="pagination">
@@ -87,6 +98,10 @@ const Developers = () => {
                     lastPageText="Last"
                 />
             </div>
+            {loading ?
+                <LoadingModal></LoadingModal>
+                : null
+            }
         </div>
 
     );

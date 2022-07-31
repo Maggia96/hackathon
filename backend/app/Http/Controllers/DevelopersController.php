@@ -21,4 +21,19 @@ class DevelopersController extends Controller
         }
         return response()->json(['success' => false]);
     }
+
+    public function getDeveloperDetailsById($id)
+    {
+        $developerModel = new Developer();
+        $developer = $developerModel->getDeveloperDetailsById($id);
+
+        if ($developer) {
+
+            return response()->json([
+                'developer' => $developer,
+                'success' => true
+            ]);
+        }
+        return response()->json(['success' => false]);
+    }
 }

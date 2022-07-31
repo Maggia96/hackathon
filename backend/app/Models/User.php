@@ -66,7 +66,7 @@ class User extends Authenticatable implements JWTSubject
 
     public function createUserCron($data){
         return User::create([
-            'name' => $data->name->first . $data->name->last,
+            'name' => $data->name->first . ' ' . $data->name->last,
             'email' => $data->email,
             'password' => Hash::make('$data->login->password')
             //'password' => Hash::make('12345678')

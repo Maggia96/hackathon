@@ -31,18 +31,18 @@ class Hackathon extends Model
 
     public function getHackations()
     {
-        return Hackathon::paginate(10);
+        return Hackathon::orderBy('date', 'desc')->paginate(10);
     }
     
     public function getHackationDetailsById($id)
     {
-        return $this::with('developments')->with('developers.winner')->find($id);
+        return $this::with('developments.developer.winner')->find($id);
     }
 
     public function createHackathonCron($data)
     {
         return Hackathon::create([
-            'name' => $data->location->city . ' Hackathon 2022',
+            'name' => $data->location->city . ' Hackathon ' . date('Y', strtotime($data->registered->date)) ,
             'place' => $data->location->country,
             'date' => date('Y-m-d', strtotime($data->registered->date))
         ]);

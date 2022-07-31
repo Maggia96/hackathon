@@ -1,13 +1,11 @@
-import { Link, useLocation } from 'react-router-dom';
+import "./styles.css";
 import AuthUser from '../../components/AuthUser';
 import { HackLogo } from '../../assets/img/index';
-
-import "./styles.css";
+import { Link, useLocation } from 'react-router-dom';
 
 
 const Menu = () => {
     const { logout } = AuthUser();
-
     const { pathname } = useLocation();
 
     return (
@@ -24,7 +22,6 @@ const Menu = () => {
                     >
                         <img className='hack-logo' src={HackLogo} alt="" />
                     </Link>
-
                 </li>
                 <li className='sidebar-item'>
                     <Link
@@ -37,7 +34,6 @@ const Menu = () => {
                     >
                         Home
                     </Link>
-
                 </li>
                 <li className='sidebar-item'>
                     <Link
@@ -61,17 +57,14 @@ const Menu = () => {
                                 : 'menu-link'
                         }
                     >
-                        Developers
+                        Top Devs
                     </Link>
-
                 </li>
                 <li className='sidebar-item logout'>
                     <p className='menu-link logout' onClick={logout}>Logout</p>
-
                 </li>
             </ul>
         </div>
-
     );
 };
 

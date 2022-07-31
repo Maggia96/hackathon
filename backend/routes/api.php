@@ -31,6 +31,7 @@ Route::group(['middleware' => ['jwt.verify']], function() {
     Route::post('/refresh', [AuthController::class, 'refresh']);
     Route::post('/me', [AuthController::class, 'me']);
     Route::get('/get_hackaton/{id}', [HackathonsController::class, 'getHackationDetailsById']);
-    Route::get('/get_top_developers', [DevelopersController::class, 'getTopDevelopers']);
     Route::get('/get_hackatons', [HackathonsController::class, 'getHackatons']);
+    Route::get('/get_developer/{id}', [DevelopersController::class, 'getDeveloperDetailsById']);
+    Route::get('/get_top_developers', [DevelopersController::class, 'getTopDevelopers']);
 });

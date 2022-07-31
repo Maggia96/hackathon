@@ -42,7 +42,14 @@ class Developer extends Model
 
     public function getTopDevelopers()
     {
-        return Winner::where('ranking', '!=', 'null')->with('developer', 'developer.hackathon')->orderBy('ranking', 'asc')->paginate(7);
+        return Winner::where('ranking', '!=', 'null')
+            ->with('developer.user', 'developer.hackathon')
+            ->orderBy('ranking', 'asc')
+            ->paginate(10);
+    }
+    public function getDeveloperDetailsById($id)
+    {
+        return $this::with('winner', 'hackathon', 'user')->find($id);
     }
 
     public function createDeveloperCron($data, $hackathonId, $userId, $developmentId)
