@@ -1,0 +1,11 @@
+.page404-container{
+    background-color: rgba(192, 24, 24, 0.664);
+    position: absolute;
+    top: 40%;
+    left: 0;
+    right: 0;
+    padding: 2rem;
+}
+.label404{
+    color: white;
+}

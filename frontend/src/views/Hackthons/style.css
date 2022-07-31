@@ -1,0 +1,64 @@
+.container {
+    padding: 3rem;
+}
+
+.section-title {
+    text-align: left;
+}
+
+table {
+    width: 100%;
+    background-color: white;
+    margin-top: 1rem;
+}
+
+tr {
+    padding: 0.6rem;
+    border-top: 1px solid lightgray;
+    text-align: left;
+    font-size: 18px;
+}
+
+td {
+    padding: 0.6rem;
+    border-top: 1px solid lightgray;
+    text-align: left;
+}
+
+td img {
+    border-radius: 20rem;
+}
+
+.pagination {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+}
+
+.loader-label{
+    position: absolute;
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 0;
+    }
+
+    table {
+        margin-left: 2%;
+        width: -webkit-fill-available
+    }
+
+    .pagination {
+        margin-bottom: 2rem;
+    }
+
+    td {
+        font-size: 14px;
+    }
+
+    .mobile-hide {
+        display: none;
+    }
+}

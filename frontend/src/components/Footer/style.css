@@ -1,0 +1,22 @@
+.footer-container{
+    height: 3rem;
+    justify-content: center ;
+    vertical-align: middle;
+    display: flex;
+    align-items: center;
+    z-index: 1;
+    position: absolute;
+    bottom: 0;
+    width: 95%;
+    color: white;
+    background-color: #111;
+    left: 5%;
+}
+
+
+@media (max-width: 768px) {
+    .footer-container{
+        width: 100%;
+        left: 0%;
+    }
+}

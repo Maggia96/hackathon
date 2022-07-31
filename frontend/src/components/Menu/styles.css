@@ -1,0 +1,79 @@
+.menu-container {
+    width: 100%;
+    padding: 1.5rem;
+    text-align: left;
+    height: 100%;
+    width: 180px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    padding-top: 20px;
+    z-index: 2;
+}
+
+.menu-link {
+    color: white;
+    font-size: 1.2rem;
+}
+
+.active {
+    color: #06A6FA;
+}
+
+.menu-link:hover {
+    color: #06A6FA;
+}
+
+a:link {
+    text-decoration: none;
+}
+
+.sidebar-list {
+    list-style: none;
+    padding-left: 0;
+    text-align: center;
+}
+
+.logout {
+    padding: 0;
+}
+
+.sidebar-item {
+    margin-bottom: 1rem;
+}
+
+.sidebar-item.logout {
+    position: absolute;
+    bottom: 0;
+}
+
+.hack-logo{
+    width: -webkit-fill-available;
+}
+
+@media (max-width: 768px) {
+    .menu-container {
+        width: 100%;
+        padding: 1.5rem;
+        text-align: left;
+        height: 80px;
+        position: relative;
+        z-index: 1;
+        overflow-x: hidden;
+        padding-top: 20px;
+    }
+    .sidebar-list {
+      display: flex;
+      justify-content: space-around;
+    }
+
+    .sidebar-item.logout {
+        position: relative;
+    }
+    .menu-link {
+        font-size: 1rem;
+    }
+}
